@@ -1,0 +1,2 @@
+include README.md
+recursive-include esp32_deauth/firmware *
