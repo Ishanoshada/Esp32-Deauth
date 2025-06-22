@@ -5,7 +5,8 @@ from .deauth import ESP32WiFiAttackTool
 
 def print_banner():
    
-    click.secho("A cross-platform Python toolkit for Wi-Fi deauthentication testing.", fg="yellow")
+    click.secho("A cross-platform Python toolkit for Wi-Fi deauthentication testing. ", fg="yellow")
+    click.secho("by Ishan Oshada", fg="green")
     click.secho("https://github.com/ishanoshada/esp32-deauth\n", fg="blue")
 
 @click.group()
