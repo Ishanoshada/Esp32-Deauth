@@ -1,11 +1,36 @@
 # ESP32 Deauthentication Tool
+
+
 A powerful, cross-platform Python toolkit for Wi-Fi deauthentication testing using only an ESP32 board and a data cable. With a simple command-line interface and interactive menus, you can easily erase and flash your ESP32, scan for Wi-Fi networks, and launch a variety of wireless attacks—all from your terminal. The tool also provides seamless WiFi reconnection to the ESP32's ManagementAP WiFi network (**SSID:** `ManagementAP`, **password:** `mgmtadmin`) on Windows, Linux, and macOS.
 
 Supports continuous or unlimited attack looping—run attacks in a loop for as long as needed (e.g., for stress testing or research).
 
+
+<center>
+
+![video.gif](/src/video.gif)
+
+</center>
 > **⚠️ Legal Notice:**  
 > Deauthentication attacks are illegal without explicit permission from the network owner. This tool is intended strictly for educational, research, and authorized penetration testing purposes. Use responsibly and only on networks you own or have written authorization to test. The authors disclaim all liability for misuse.
 
+## Required Hardware
+
+To use the ESP32 Deauthentication Tool, you will need:
+
+- **ESP32 Board:**  
+    Any ESP32 development board (e.g., ESP32-WROOM-32) is supported.  
+    > The tool is designed for use with standard ESP32 boards and has been tested with models such as the ESP32-WROOM-32.
+
+- **USB Data Cable:**  
+    A USB cable with data lines (not just charging) to connect the ESP32 to your computer for flashing and serial communication.
+
+- **Computer:**  
+    A Windows, Linux, or macOS machine with Python 3.7+ installed.
+
+No additional Wi-Fi adapters or special hardware are required—just a standard ESP32 board and a USB cable.
+
+![img](/src/pic.jpg)
 
 ## ✨ Features
 

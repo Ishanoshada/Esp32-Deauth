@@ -547,7 +547,14 @@ class ESP32WiFiAttackTool:
                             status = self.get_status()
                         except:
                             status  = ""
+                        
                         if status:
+                            try:
+                                if status["state"] == 0:
+                                    print("Sometimes, 5G Wi-Fi networks can't be attacked.")
+                                    break
+                            except:
+                                pass
                             if status['state'] in [self.attack_state_enum['FINISHED'], self.attack_state_enum['TIMEOUT']]:
                                 logger.info(f"Attack {'completed' if status['state'] == self.attack_state_enum['FINISHED'] else 'timed out'}")
                                 if status['state'] == self.attack_state_enum['FINISHED']:
@@ -571,6 +578,27 @@ class ESP32WiFiAttackTool:
                         if status and status['state'] == self.attack_state_enum['RUNNING']:
                             logger.error("Attack did not complete within timeout, resetting...")
                             self.reset_attack()
+                        # Ask user if they want to try reconnecting (up to 6 attempts)
+                        for attempt in range(6):
+                            user_input = input("Attack status is failing or timing out. The Wi-Fi connection may be lost. Try reconnecting? (y/n): ").strip().lower()
+                            if user_input == 'y':
+                                logger.info(f"Attempting to reconnect to ManagementAP (attempt {attempt + 1}/6)...")
+                                if self.reconnect_wifi() and self.check_api_connectivity():
+                                    logger.info("Reconnected successfully. Retrying attack...")
+                                    status = self.get_status()
+                                    if status and status['state'] == self.attack_state_enum['RUNNING']:
+                                        logger.error("Attack did not complete within timeout, resetting...")
+                                        self.reset_attack()
+                                else:
+                                    logger.error("Reconnect failed.")
+                            elif user_input == 'n':
+                                logger.info("Exiting attack loop.")
+                                return False
+                            else:
+                                logger.error("Invalid input. Please enter 'y' or 'n'.")
+                        else:
+                            logger.info("Maximum reconnect attempts reached. Exiting attack loop.")
+                            return False
                 else:
                     logger.error("Failed to initiate attack, possibly AP is off. Retrying after reconnect...")
                     self.reconnect_wifi()

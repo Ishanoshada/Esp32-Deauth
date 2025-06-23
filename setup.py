@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="esp32-deauth",
-    version="0.3.2",
+    version="0.3.3",
     description="A Python tool for Wi-Fi deauthentication attacks using ESP32 with webserver firmware",
     long_description=long_description,
     long_description_content_type="text/markdown",
