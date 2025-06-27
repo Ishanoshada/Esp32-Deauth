@@ -306,3 +306,4 @@ GNU General Public License v2.0 (see `LICENSE` file).
 - Thanks to the Python, `esptool`, and Flask communities for their excellent libraries.
 - Built with contributions from the open-source community.
 
+**Repository Views** ![Views](https://profile-counter.glitch.me/esp32-deauth/count.svg)
